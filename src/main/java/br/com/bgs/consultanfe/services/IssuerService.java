@@ -11,7 +11,11 @@ public class IssuerService {
     @Autowired
     IssuerRepository issuerRepository;
 
-    public void save(Issuer issuer){
-        issuerRepository.save(issuer);
+    public Issuer save(Issuer issuer){
+        return issuerRepository.save(issuer);
+    }
+
+    public Issuer findByEnrolment(String enrolment){
+        return issuerRepository.findByEnrolment(enrolment);
     }
 }

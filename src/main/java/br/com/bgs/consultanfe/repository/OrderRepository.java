@@ -11,4 +11,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @NonNull
     Order save (Order order);
 
+    Order findByKeyAccess(String keyAccess);
+
 }

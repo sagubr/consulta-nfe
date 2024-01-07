@@ -25,4 +25,8 @@ public class Product {
         this.unitOfMeasure = unitOfMeasure;
         this.price = price;
     }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

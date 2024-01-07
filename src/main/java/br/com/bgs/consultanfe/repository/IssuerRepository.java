@@ -10,4 +10,6 @@ public interface IssuerRepository extends JpaRepository<Issuer, Long> {
 
     @NonNull
     Issuer save(Issuer issuer);
+
+    Issuer findByEnrolment(String enrolment);
 }

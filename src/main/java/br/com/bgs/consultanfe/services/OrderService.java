@@ -11,8 +11,12 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
-    public void save(Order order){
-        orderRepository.save(order);
+    public Order save(Order order){
+        return orderRepository.save(order);
+    }
+
+    public Order findByKeyAccess(String keyAccess){
+        return orderRepository.findByKeyAccess(keyAccess);
     }
 
 }

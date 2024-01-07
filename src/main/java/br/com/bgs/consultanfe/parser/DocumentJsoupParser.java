@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DocumentParser {
+public class DocumentJsoupParser {
 
     private final Document document;
     private Order order;
     private Issuer issuer;
     private List<Product> products = new ArrayList<>();
 
-    public DocumentParser(Document document) {
+    public DocumentJsoupParser(Document document) {
         this.document = Jsoup.parse(String.valueOf(document));
         this.issuer = createIssuer();
         this.order = createOrder();
@@ -41,11 +41,6 @@ public class DocumentParser {
         return new Issuer(name, enrolment);
 
     }
-
-    public Issuer getIssuer() {
-        return issuer;
-    }
-
     private Order createOrder() {
 
         Elements tables = this.document.select("table");
@@ -67,16 +62,10 @@ public class DocumentParser {
         return new Order(
                 LocalDateTime.parse(date, formatter),
                 this.issuer,
-                false,
                 keyAccess
         );
 
     }
-
-    public Order getOrder() {
-        return order;
-    }
-
     private List<Product> createProducts() {
 
         Elements tables = this.document.select("table");
@@ -119,6 +108,14 @@ public class DocumentParser {
         }
 
         return products;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public Issuer getIssuer() {
+        return issuer;
     }
 
     public List<Product> getProducts() {

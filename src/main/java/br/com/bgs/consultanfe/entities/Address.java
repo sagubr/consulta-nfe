@@ -4,10 +4,6 @@ public class Address {
 
     private String url;
 
-    public Address(String url) {
-        this.url = url;
-    }
-
     public Address() {
     }
 
