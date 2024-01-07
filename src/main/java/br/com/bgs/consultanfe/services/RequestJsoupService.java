@@ -11,18 +11,20 @@ import java.io.IOException;
 @Service
 public class RequestJsoupService {
 
-    public void requestAddress(String url){
-        try{
+    private static final int TIMEOUT_MILLIS = 10000;
+
+    public Document requestAddress(String url) throws HttpStatusException {
+        try {
             Connection connection = Jsoup.connect(url);
             connection.userAgent("Mozilla");
-            connection.timeout(5000);
+            connection.timeout(TIMEOUT_MILLIS);
 
-            Document document = connection.get();
-        }catch (HttpStatusException ex) {
-            //...
+            return connection.get();
+        } catch (HttpStatusException ex) {
+            throw ex;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro durante a solicitação HTTP", e);
         }
-
     }
 }
+

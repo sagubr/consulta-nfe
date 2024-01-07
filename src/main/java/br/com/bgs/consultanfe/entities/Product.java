@@ -14,9 +14,15 @@ public class Product {
     @ManyToOne
     private Order order;
     private String description;
-    private double quantity;
+    private Double quantity;
     private String unitOfMeasure;
-
     private BigDecimal price;
 
+    public Product(Order order, String description, Double quantity, String unitOfMeasure, BigDecimal price) {
+        this.order = order;
+        this.description = description;
+        this.quantity = quantity;
+        this.unitOfMeasure = unitOfMeasure;
+        this.price = price;
+    }
 }

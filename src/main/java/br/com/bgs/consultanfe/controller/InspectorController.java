@@ -1,11 +1,13 @@
 package br.com.bgs.consultanfe.controller;
 
 import br.com.bgs.consultanfe.entities.Address;
-import br.com.bgs.consultanfe.services.DataParsingService;
+import br.com.bgs.consultanfe.services.DocumentJsoupService;
+import br.com.bgs.consultanfe.services.InspectorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.jsoup.HttpStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class InspectorController {
 
     @Autowired
-    DataParsingService dataParsingService;
+    InspectorService inspectorService;
 
     @Operation(summary = "Processa a url do QRCODE")
     @ApiResponses(value = {
@@ -25,10 +27,7 @@ public class InspectorController {
     })
     @PostMapping(value = "/process-url", produces = "application/json")
     public ResponseEntity<String> processUrl(@RequestBody Address address) {
-
-        //dataParsingService.parseAndSaveData(htmlResponse);
-
-        return ResponseEntity.ok("Processamento concluído com sucesso." + address.getUrl());
+        return inspectorService.processUrl(address);
     }
 
 }
